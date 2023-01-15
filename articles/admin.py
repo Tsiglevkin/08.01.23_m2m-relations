@@ -9,7 +9,7 @@ class ScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
         main_tag_counter = 0
         for form in self.forms:
-            if form.cleaned_data['is_main']:
+            if form.cleaned_data.get('is_main'):  # исправлено обращение по ключу. использован get
                 main_tag_counter += 1
         if main_tag_counter < 1:
             raise ValidationError('Должен быть выбран основной Тэг/раздел')

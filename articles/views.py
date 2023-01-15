@@ -8,8 +8,8 @@ from articles.models import Article, Tag
 def articles_list(request):
     """Функция формирует сгруппированный по дате публикации список статей и возвращает рендер"""
     template = 'articles/news.html'
-    ordering = '-published_at'
-    articles = Article.objects.order_by(ordering)
+    # ordering = '-published_at'
+    articles = Article.objects.all()  #order_by(ordering)
     context = {'object_list': articles}
 
     return render(request, template, context)
