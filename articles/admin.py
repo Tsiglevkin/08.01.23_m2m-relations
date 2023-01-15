@@ -11,11 +11,11 @@ class ScopeInlineFormset(BaseInlineFormSet):
         for form in self.forms:
             if form.cleaned_data['is_main']:
                 main_tag_counter += 1
-            if main_tag_counter < 1:
-                raise ValidationError('Должен быть выбран основной Тэг/раздел')
-            elif main_tag_counter > 1:
-                raise ValidationError('Основной Тэг/раздел должен быть один')
-            return super().clean()
+        if main_tag_counter < 1:
+            raise ValidationError('Должен быть выбран основной Тэг/раздел')
+        if main_tag_counter > 1:
+            raise ValidationError('Основной Тэг/раздел должен быть один')
+        return super().clean()
 
 
 class ScopeInline(admin.TabularInline):
